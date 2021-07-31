@@ -9,18 +9,17 @@ public class FoodTruckApp {
 		int selection;
 		Scanner kb = new Scanner(System.in);
 
-		FoodTruck[] lineUp = new FoodTruck[5];
 		FoodTruckApp truckApp = new FoodTruckApp();
 
 		System.out.println(
 				"Enter the food truck line up! Prompts will appear asking " 
-		+ "for specific information on each truck");
-		lineUp = truckApp.populateTrucks(kb);
+						+ "for specific information on each truck");
+		FoodTruck[] lineUp = truckApp.populateTrucks(kb);
 
 		while (!quit) {
 			truckApp.printMenu();
-			selection = kb.hashCode();
-			truckApp.userSelection(selection);
+			selection = kb.nextInt();
+			truckApp.userSelection(selection, lineUp);
 			if (selection == 4) {
 				quit = true;
 			}
@@ -29,37 +28,70 @@ public class FoodTruckApp {
 
 	}
 
-	private void userSelection(int selection) {
+	private void userSelection(int selection, FoodTruck[] lineUp) {
 		if (selection == 1) {
 			System.out.println("Listing all existing food trucks: ");
+			listTrucks(lineUp);
+			System.out.println("");
 		} else if (selection == 2) {
-			int average = calculateAvgRating();
+			double average = calculateAvgRating(lineUp);
 			System.out.println("The average rating of these food trucks is " + average);
+			System.out.println("");
 
 		} else if (selection == 3) {
-			String highestRatedTruck = determineHighestRatedTruck();
-			System.out.println("The highest-rated food truck is" + highestRatedTruck);
+			FoodTruck highestRatedTruck = determineHighestRatedTruck(lineUp);
+			System.out.println("The highest-rated food truck is " + highestRatedTruck.getTruckName() 
+				+ ", it has a rating of " + highestRatedTruck.getStarRating() + " stars.");
+			System.out.println("");
 		} else {
 			System.out.println("Quitting. Thanks for stopping by!");
 		}
 
 	}
 
-	private String determineHighestRatedTruck() {
-		// TODO Auto-generated method stub
-		return null;
+	private void listTrucks(FoodTruck[] lineUp) {
+		int index = 1;
+		for (int i = 0; i < lineUp.length; i++) {
+			if (lineUp[i] != null) {
+			System.out.print(index + ".) ");
+			System.out.println(lineUp[i].getTruckName());
+			index++;
+			}
+		}
 	}
 
-	private int calculateAvgRating() {
-		// TODO Auto-generated method stub
+	private FoodTruck determineHighestRatedTruck(FoodTruck[] lineUp) {
+		int highestRating = 0;
+		FoodTruck highestRated = null;
+		for (int i = 0; i < lineUp.length; i++) {
+			if (lineUp[i] != null) {
+				if (lineUp[i].getStarRating() > highestRating) {
+					highestRating = lineUp[i].getStarRating();
+					highestRated = lineUp[i];
+					}
+			}
+		}
+		return highestRated;
+		
+	}
+
+	private double calculateAvgRating(FoodTruck[] lineUp) {
+		int numTrucks = 1;
+		int ratings = 0;
+		for (int i = 0; i < lineUp.length; i++) {
+			if (lineUp[i] != null) {
+			ratings += lineUp[i].getStarRating();
+			numTrucks++;
+			}
+		}
+		double average = (double)(ratings/numTrucks);
+		return average;
 
 	}
 
 	private void printMenu() {
-		System.out.println("1.)List all existing food trucks.\n"
-						 + "2.)See the average rating of food trucks.\n"
-						 + "3.)Display the highest-rated food truck.\n"
-						 + "4.)Quit the program.");
+		System.out.println("1.)List all existing food trucks.\n" + "2.)See the average rating of food trucks.\n"
+				+ "3.)Display the highest-rated food truck.\n" + "4.)Quit the program.");
 
 	}
 
@@ -75,14 +107,18 @@ public class FoodTruckApp {
 			foodTruckName = kb.nextLine();
 			if (foodTruckName.equalsIgnoreCase("quit")) {
 				break;
-			}
-			System.out.println("Please enter the type of food " + foodTruckName + " serves: ");
-			foodType = kb.nextLine();
-			System.out.println("Please enter how many stars you rate " + foodTruckName + " at (0-5): ");
-			starRating = kb.nextInt();
+			} else {
+				System.out.println("Please enter the type of food " + foodTruckName + " served: ");
+				foodType = kb.nextLine();
+				System.out.println("Please enter how many stars you rate " + foodTruckName + " at (0-5): ");
+				starRating = kb.nextInt();
+				
+				kb.nextLine();
 
-			newTruck = new FoodTruck(foodTruckName, foodType, starRating);
-			lineUp[i] = newTruck;
+				newTruck = new FoodTruck(foodTruckName, foodType, starRating);
+				lineUp[i] = newTruck;
+			}
+			
 		}
 		return lineUp;
 	}

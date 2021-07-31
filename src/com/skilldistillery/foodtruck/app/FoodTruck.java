@@ -5,11 +5,12 @@ public class FoodTruck {
 	private String truckName;
 	private String foodType;
 	private int starRating; //0 - 5 stars
+	private int truckID;
 	
 	public FoodTruck(String truckName, String foodType, int starRating) {
 		super();
 		FoodTruck.uniqueID++;
-		int truckId = this.uniqueID;
+		this.truckID = uniqueID;
 		this.truckName = truckName;
 		this.foodType = foodType;
 		this.starRating = starRating;	
