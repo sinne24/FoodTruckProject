@@ -40,8 +40,7 @@ public class FoodTruckApp {
 
 		} else if (selection == 3) {
 			FoodTruck highestRatedTruck = determineHighestRatedTruck(lineUp);
-			System.out.println("The highest-rated food truck is " + highestRatedTruck.getTruckName() 
-				+ ", it has a rating of " + highestRatedTruck.getStarRating() + " stars.");
+			System.out.println("The highest-rated food truck is " + highestRatedTruck.displayTruck());
 			System.out.println("");
 		} else {
 			System.out.println("Quitting. Thanks for stopping by!");
@@ -90,8 +89,10 @@ public class FoodTruckApp {
 	}
 
 	private void printMenu() {
-		System.out.println("1.)List all existing food trucks.\n" + "2.)See the average rating of food trucks.\n"
-				+ "3.)Display the highest-rated food truck.\n" + "4.)Quit the program.");
+		System.out.println("1.)List all existing food trucks.\n" 
+						 + "2.)See the average rating of food trucks.\n"
+						 + "3.)Display the highest-rated food truck.\n" 
+						 + "4.)Quit the program.");
 
 	}
 

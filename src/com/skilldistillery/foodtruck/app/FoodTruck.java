@@ -17,6 +17,11 @@ public class FoodTruck {
 		
 	}
 
+	public String displayTruck() {
+		return  truckName + " (truck ID number " + truckID + "):\n\t This truck sells " + foodType + " food , and is rated at " + starRating
+				+ " stars!";
+	}
+
 	public static int getUniqueID() {
 		return uniqueID;
 	}
