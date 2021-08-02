@@ -1,6 +1,7 @@
 # Food Truck Application
 ### Description
-  
+  The Food Truck Application takes in user input to populate a list of local trucks coming by any given day and then presents the user with menu options. The user can have the trucks listed out, the average rating of all calculated, the truck with the highest rating determined, or can choose to quit the program altogether. 
 ### Technologies Used
-  
+  Eclipse IDE
 ### Lessons Learned
+  The use of static methods and objects was strongly reinforced in this exercise. Additionally, calling objects from separate classes and using class level data fields were a great refresher. The program itself was not too challenging but having the opportunity to assist my peers with their programs over the weekend provided intense reinforcement. I understand the material far better now than had I not had the privilege to assist others in their learning. Showing up to TA on Saturday with my framework built and specific questions to ask was advantageous, and I feel encouraged to make this weekend's programming schedule my new routine. You could say my "lessons learned" were more "soft skills" than core knowledge, but I'm not upset about it. These are valid lessons that will help with success as the programs become more complex and I am pushed out of my comfort zone. 
